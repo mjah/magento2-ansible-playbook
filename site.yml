@@ -1,0 +1,13 @@
+---
+- name: Install Magento 2
+  hosts: magento
+  remote_user: root
+  become: yes
+
+  roles:
+    - common
+    - nginx
+    - php
+    - mariadb
+    - composer
+    # - magento

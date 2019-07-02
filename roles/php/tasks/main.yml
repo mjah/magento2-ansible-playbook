@@ -1,0 +1,19 @@
+---
+- name: Install PHP-FPM and Magento PHP Dependencies
+  apt:
+    name: [
+     "php{{ php_version }}-fpm",
+     "php{{ php_version }}-bcmath",
+     "php{{ php_version }}-curl",
+     "php{{ php_version }}-dom",
+     "php{{ php_version }}-gd",
+     "php{{ php_version }}-iconv",
+     "php{{ php_version }}-intl",
+     "php{{ php_version }}-mbstring",
+     "php{{ php_version }}-mysql",
+     "php{{ php_version }}-simplexml",
+     "php{{ php_version }}-soap",
+     "php{{ php_version }}-xsl",
+     "php{{ php_version }}-zip"
+    ]
+    state: latest

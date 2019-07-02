@@ -1,0 +1,2 @@
+[magento]
+host01 ansible_host=240.0.0.0
