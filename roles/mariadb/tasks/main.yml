@@ -1,5 +1,5 @@
 ---
-- name: Install MariaDB Server
+- name: Install MariaDB {{ mariadb_version }} Server
   apt:
-    name: mariadb-server-10.1
+    name: mariadb-server-{{ mariadb_version }}
     state: latest

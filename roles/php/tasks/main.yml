@@ -1,7 +1,8 @@
 ---
-- name: Install PHP-FPM and Magento PHP Dependencies
+- name: Install PHP {{ php_version }} and Magento PHP Dependencies
   apt:
     name: [
+     "php{{ php_version }}",
      "php{{ php_version }}-fpm",
      "php{{ php_version }}-bcmath",
      "php{{ php_version }}-curl",
