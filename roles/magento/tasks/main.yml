@@ -1,1 +1,79 @@
 ---
+- name: Set Magento Access Keys for Composer
+  command: composer global config http-basic.repo.magento.com "{{ magento_public_key }}" "{{ magento_private_key }}"
+
+- name: Create the Magento Open Source Project
+  command: composer create-project --repository=https://repo.magento.com/ magento/project-community-edition {{ magento_dir }}
+
+- name: Set Files Permissions to g+w
+  shell: find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
+  args:
+    chdir: "{{ magento_dir }}"
+
+- name: Set Directories Permissions to g+ws
+  shell: find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \;
+  args:
+    chdir: "{{ magento_dir }}"
+
+- name: Set Files and Directories Group User
+  file:
+    dest: "{{ magento_dir }}"
+    group: www-data
+    recurse: yes
+
+- name: Set Permission u+x to bin/magento
+  file:
+    path: "{{ magento_dir }}/bin/magento"
+    mode: u+x
+
+- name: Install Magento
+  shell: |
+    php bin/magento setup:install \
+    --base-url="{{ base_url }}" \
+    --db-host="{{ db_host }}" \
+    --db-name="{{ db_name }}" \
+    --db-user="{{ db_user }}" \
+    --db-password="{{ db_password }}" \
+    --backend-frontname="{{ backend_frontname }}" \
+    --admin-firstname="{{ admin_firstname }}" \
+    --admin-lastname="{{ admin_lastname }}" \
+    --admin-email="{{ admin_email }}" \
+    --admin-user="{{ admin_user }}" \
+    --admin-password="{{ admin_password }}" \
+    --language="{{ language }}" \
+    --currency="{{ currency }}" \
+    --timezone="{{ timezone }}" \
+    --use-rewrites="{{ use_rewrites }}"
+  args:
+    chdir: "{{ magento_dir }}"
+
+- name: Change Magento Deployment Mode
+  shell: php bin/magento deploy:mode:set "{{ magento_mode }}"
+  args:
+    chdir: "{{ magento_dir }}"
+  when: magento_mode != 'default'
+
+- name: Deploy the Static Content
+  shell: php bin/magento setup:static-content:deploy -f
+  args:
+    chdir: "{{ magento_dir }}"
+
+- name: Run Reindexer
+  shell: php bin/magento indexer:reindex
+  args:
+    chdir: "{{ magento_dir }}"
+
+- name: Flush Cache
+  shell: php bin/magento cache:flush
+  args:
+    chdir: "{{ magento_dir }}"
+
+- name: Enable Cache
+  shell: php bin/magento cache:enable
+  args:
+    chdir: "{{ magento_dir }}"
+
+- name: Add Magento to Cron
+  shell: php bin/magento cron:install
+  args:
+    chdir: "{{ magento_dir }}"

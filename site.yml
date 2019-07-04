@@ -9,5 +9,5 @@
     - php
     - mariadb
     - composer
-    # - magento
+    - magento
     - nginx
