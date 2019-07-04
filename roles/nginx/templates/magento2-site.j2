@@ -1,0 +1,14 @@
+upstream fastcgi_backend {
+        server  unix:/run/php/php{{ php_version }}-fpm.sock;
+}
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name {{ server_hostname }};
+
+        set $MAGE_ROOT /var/www/html;
+
+        include /var/www/html/nginx.conf.sample;
+}

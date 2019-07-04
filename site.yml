@@ -6,8 +6,8 @@
 
   roles:
     - common
-    - nginx
     - php
     - mariadb
     - composer
     # - magento
+    - nginx

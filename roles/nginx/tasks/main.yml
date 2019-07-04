@@ -3,3 +3,30 @@
   apt:
     name: nginx
     state: latest
+
+- name: Add Nginx Configuration File
+  template:
+    src: magento2-site.j2
+    dest: /etc/nginx/sites-available/magento2-site
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  notify:
+  - Reload Nginx Configuration
+
+- name: Create Symbolic Link
+  file:
+    src: /etc/nginx/sites-available/magento2-site
+    dest: /etc/nginx/sites-enabled/magento2-site
+    owner: root
+    group: root
+    state: link
+  notify:
+  - Reload Nginx Configuration
+
+- name: Start Nginx Service
+  service:
+    name: nginx
+    state: started
+    enabled: true

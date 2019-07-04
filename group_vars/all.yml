@@ -6,6 +6,9 @@ timezone: Etc/UTC
 php_version: 7.2
 mariadb_version: 10.1
 
+# Nginx configuration
+server_hostname: serverhostname.com
+
 # Database configuration
 db_host: localhost
 db_name: magento
