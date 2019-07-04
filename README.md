@@ -1,6 +1,8 @@
 # Magento 2 Ansible Playbook
 
-This is an Ansible Playbook for Magento 2. It is used to set up a quick developer environment on a server. **This is not recommended for production.**
+This is an Ansible Playbook for Magento 2. It is used to set up a quick developer environment on a server.
+
+**This is not recommended for production.**
 
 It sets up a vanilla Magento 2 installation, and uses Nginx, MariaDB, and PHP.
 
@@ -9,6 +11,7 @@ This playbook was tested on Ubuntu 18.04 on a Digital Ocean node.
 ## Requirements
 
 * Ubuntu 18.04 or similar environment
+* Minimum 2GB RAM
 * Root user access
 * Magento access keys
 
