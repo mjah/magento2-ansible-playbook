@@ -8,7 +8,7 @@ server {
 
         server_name {{ server_hostname }};
 
-        set $MAGE_ROOT /var/www/html;
+        set $MAGE_ROOT /var/www/html/magento;
 
-        include /var/www/html/nginx.conf.sample;
+        include /var/www/html/magento/nginx.conf.sample;
 }

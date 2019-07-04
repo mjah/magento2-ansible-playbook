@@ -6,8 +6,8 @@
 
 - name: Add Nginx Configuration File
   template:
-    src: magento2-site.j2
-    dest: /etc/nginx/sites-available/magento2-site
+    src: magento.j2
+    dest: /etc/nginx/sites-available/magento
     owner: root
     group: root
     mode: '0644'
@@ -17,8 +17,8 @@
 
 - name: Create Symbolic Link
   file:
-    src: /etc/nginx/sites-available/magento2-site
-    dest: /etc/nginx/sites-enabled/magento2-site
+    src: /etc/nginx/sites-available/magento
+    dest: /etc/nginx/sites-enabled/magento
     owner: root
     group: root
     state: link
