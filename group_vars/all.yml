@@ -1,6 +1,6 @@
 ---
 # Server configuration
-timezone: Etc/UTC
+timezone: Europe/London
 
 # Package version
 php_version: 7.2
