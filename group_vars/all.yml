@@ -7,7 +7,8 @@ php_version: 7.2
 mariadb_version: 10.1
 
 # Nginx configuration
-server_hostname: serverhostname.com
+server_hostname: mage2-test.digitaloutlet.co.uk
+magento_dir: /var/www/html/magento
 
 # Database configuration
 db_host: localhost
