@@ -4,6 +4,7 @@
     name: [
       "mariadb-server-{{ mariadb_version }}",
       "mariadb-client-{{ mariadb_version }}",
+      "python-pip",
       "python-mysqldb"
     ] 
     state: latest
