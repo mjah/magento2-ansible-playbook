@@ -34,3 +34,4 @@ ansible-playbook -i hosts site.yml
 * [ ] Create a **magento** linux user, instead of using root.
 * [ ] (After magento user created) Set correct group permissions for magento installation.
 * [ ] Set up magento_umask.
+* [ ] Select version of Magento
